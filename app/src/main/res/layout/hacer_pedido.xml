@@ -2,46 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="60dp">
-            <!--aca se crean los catalogos-->
-
-            <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:text="Eliga una forma de realizar el pedido"
+                android:textSize="36sp"
+                android:textAlignment="center"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:weightSum="2"
-                >
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="anterior"
-                    android:id="@+id/hacer_pedido_catalogo_anterior"
-                    android:layout_weight="1"
-                    android:layout_margin="40dp"
-                    />
+                android:layout_marginTop="20dp">
 
                 <Button
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="siguiente"
-                    android:id="@+id/hacer_pedido_catalogo_siguiente"
-                    android:layout_weight="1"
-                    android:layout_margin="40dp"
-                    />
+                    android:layout_height="60dp"
+                    android:id="@+id/hacer_pedido_personalizar"
+                    android:text="Personalizar"
+                    android:layout_weight="1"/>
 
-
+                <Button
+                    android:layout_width="match_parent"
+                    android:text="Lista de Pedidos"
+                    android:id="@+id/hacer_pedido_lista_de_pedido"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"/>
             </LinearLayout>
+        </LinearLayout>
 
-        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,6 +97,4 @@
                 android:layout_weight="1"/>
         </LinearLayout>
     </RelativeLayout>
-
-
 </LinearLayout>

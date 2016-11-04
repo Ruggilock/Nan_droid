@@ -171,25 +171,45 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:layout_width="0dp"
+                android:minWidth="0dp"
+                android:layout_height="60dp"
+                android:src="@drawable/user"
+                android:scaleType="fitCenter"
+                android:id="@+id/perfil_button"
                 android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:layout_width="0dp"
+                android:minWidth="0dp"
+                android:layout_height="60dp"
+                android:src="@drawable/grocery"
+                android:scaleType="fitCenter"
+                android:id="@+id/catalogo_button"
                 android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:layout_width="0dp"
+                android:minWidth="0dp"
+                android:layout_height="60dp"
+                android:src="@drawable/cart"
+                android:scaleType="fitCenter"
+                android:id="@+id/hacer_pedido_button"
                 android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:layout_width="0dp"
+                android:minWidth="0dp"
+                android:layout_height="60dp"
+                android:src="@drawable/truck"
+                android:scaleType="fitCenter"
+                android:id="@+id/administrar_pedido_button"
                 android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:layout_width="0dp"
+                android:minWidth="0dp"
+                android:layout_height="60dp"
+                android:src="@drawable/history"
+                android:scaleType="fitCenter"
+                android:id="@+id/historial_button"
                 android:layout_weight="1"/>
         </LinearLayout>
     </RelativeLayout>
