@@ -21,7 +21,7 @@ public class GestorCliente {
 
     public Cliente obtenerClientePorID(String id){
         for(int i = 0; i < this.Clientes.size(); i++){
-            if(this.Clientes.get(i).getNombre_de_usuario() == id)
+            if(this.Clientes.get(i).getNombre_de_usuario().compareTo(id)==0)
                 return this.Clientes.get(i);
         }
         return null;
@@ -31,7 +31,7 @@ public class GestorCliente {
     public Boolean comprobarLogin(String id, String pass){
         Cliente cl = this.obtenerClientePorID(id);
         if(cl != null){
-            if(cl.getContraseña() == pass)
+            if(cl.getContraseña().compareTo(pass)==0)
                 return true;
             else
                 return false;

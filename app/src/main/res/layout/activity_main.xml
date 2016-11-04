@@ -38,7 +38,8 @@
         android:layout_marginTop="10dp"
         android:hint="Contraseña"
         android:id="@+id/loginContrasenia"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
+
         android:textSize="24sp" />
 
     <LinearLayout
