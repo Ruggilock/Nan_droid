@@ -27,16 +27,29 @@ import java.security.spec.ECField;
 
 public class Perfil extends AppCompatActivity {
     private GestorCliente gestorCliente;
-    private static String id;
+    private String id;
     Cliente cl;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil);
 
-        Context context = this;
+        context = this;
+        this.InicializarAtributos();
         this.Inicializar_menu(context);
 
+        Button boton_pass = (Button) findViewById(R.id.perfil_button_cambiar_pass);
+        boton_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cambiar_contraseña();
+            }
+        });
+
+    }
+
+    private void InicializarAtributos(){
         try{
             Bundle datos = this.getIntent().getExtras();
             id = datos.getString("id_usuario");
@@ -54,7 +67,7 @@ public class Perfil extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-        /*
+
         if (gestorCliente != null) {
             this.cl = gestorCliente.obtenerClientePorID(id);
             if (cl == null) {
@@ -62,28 +75,14 @@ public class Perfil extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-            }
-
-            this.SetDatos();
+            }else
+                this.SetDatos();
         }else{
             CharSequence text = "Gestor Nulll";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-        */
-
-        Button boton_pass = (Button) findViewById(R.id.perfil_button_cambiar_pass);
-
-        boton_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Cambiar_contraseña();
-            }
-        });
-
-
-
     }
 
     private void SetDatos(){
@@ -113,21 +112,19 @@ public class Perfil extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
-
+            this.gestorCliente.save();
         }else {
             Context context = getApplicationContext();
             CharSequence text = "contraseña incorrecta";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
         }
         actual_contraseña.setText("");
         nueva_contraseña.setText("");
-        this.gestorCliente.save();
 
     }
+
     private void Inicializar_menu(final Context context) {
 
         ImageButton boton_perfil = (ImageButton) findViewById(R.id.perfil_button);
@@ -135,8 +132,8 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent perfil = new Intent(context, Perfil.class);
+                perfil.putExtra("id_usuario",id);
                 startActivity(perfil);
-
             }
         });
 
@@ -146,6 +143,7 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent catalogo = new Intent(context, Catalogo.class);
+                catalogo.putExtra("id_usuario",id);
                 startActivity(catalogo);
 
             }
@@ -157,6 +155,7 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent hacer_pedido = new Intent(context, HacerPedido.class);
+                hacer_pedido.putExtra("id_usuario",id);
                 startActivity(hacer_pedido);
 
             }
@@ -168,6 +167,7 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent administrarPedido = new Intent(context, AdministrarPedido.class);
+                administrarPedido.putExtra("id_usuario",id);
                 startActivity(administrarPedido);
 
             }
@@ -179,6 +179,7 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent historialPedido = new Intent(context, HistorialPedido.class);
+                historialPedido.putExtra("id_usuario",id);
                 startActivity(historialPedido);
 
             }

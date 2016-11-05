@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fredy.finalfinalfinalx3sis2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="24" />
+
+    <application
+        name="com.orm.SugarApp"
+        android:name="com.android.tools.fd.runtime.BootstrapApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="DATABASE"
+            android:value="GestorCliente.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="2" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="false" />
+<!--   -<meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example.fredy.finalfinalfinalx3sis2" /> -->
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.Perfil" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.AdministrarPedido" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.Catalogo" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.HacerPedido" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.Cuotas" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.ConfirmarPedido" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.HacerPedidoCatalogo" />
+        <activity android:name="com.example.fredy.finalfinalfinalx3sis2.Vistas.HistorialPedido" />
+    </application>
+
+</manifest>

@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
+import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorProducto;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
 import com.example.fredy.finalfinalfinalx3sis2.R;
 
 /**
@@ -14,12 +18,55 @@ import com.example.fredy.finalfinalfinalx3sis2.R;
  */
 
 public class AdministrarPedido extends AppCompatActivity {
+    private GestorCliente gestorCliente;
+    private GestorProducto gestorProducto;
+    private Cliente cl;
+    private String id;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.administrar_pedido);
-        Context context = this;
+        context = this;
+        this.InicializarAtributos();
         this.Inicializar_menu(context);
+    }
+
+    private void InicializarAtributos(){
+        try{
+            Bundle datos = this.getIntent().getExtras();
+            id = datos.getString("id_usuario");
+        } catch(Exception ex){
+            CharSequence text = "No se paso el id por Intent";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        try{
+            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
+        } catch(Exception ex){
+            CharSequence text = ex.toString();
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+
+        if (gestorCliente != null) {
+            this.cl = gestorCliente.obtenerClientePorID(id);
+            if (cl == null) {
+                CharSequence text = "Cliente error Perfil";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }else{}
+
+        }else{
+            CharSequence text = "Gestor Nulll";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     private void Inicializar_menu(final Context context) {
@@ -29,6 +76,7 @@ public class AdministrarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent perfil = new Intent(context, Perfil.class);
+                perfil.putExtra("id_usuario",id);
                 startActivity(perfil);
 
             }
@@ -40,6 +88,7 @@ public class AdministrarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent catalogo = new Intent(context, Catalogo.class);
+                catalogo.putExtra("id_usuario",id);
                 startActivity(catalogo);
 
             }
@@ -51,6 +100,7 @@ public class AdministrarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent hacer_pedido = new Intent(context, HacerPedido.class);
+                hacer_pedido.putExtra("id_usuario",id);
                 startActivity(hacer_pedido);
 
             }
@@ -62,6 +112,7 @@ public class AdministrarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent administrarPedido = new Intent(context, AdministrarPedido.class);
+                administrarPedido.putExtra("id_usuario",id);
                 startActivity(administrarPedido);
 
             }
@@ -73,6 +124,7 @@ public class AdministrarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent historialPedido = new Intent(context, HistorialPedido.class);
+                historialPedido.putExtra("id_usuario",id);
                 startActivity(historialPedido);
 
             }

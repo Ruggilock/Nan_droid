@@ -32,33 +32,33 @@ public class MainActivity extends AppCompatActivity {
         loginUsuario = (EditText) findViewById(R.id.loginUsuario);
         loginContrasenia = (EditText) findViewById(R.id.loginContrasenia);
 
-
-        GestorCliente.deleteAll(GestorCliente.class);
-        try{
+        gestorCliente = null;
+        try {
             gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
-            Context context = getApplicationContext();
-            CharSequence text = "encontro base de dato";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
         } catch(Exception ex){
+            System.err.println(ex.toString());
+        }
+        if (gestorCliente != null){
+            System.err.println("Encontro base de datos");
+        } else {
+            try{
             gestorCliente = new GestorCliente();
-            gestorCliente.save();r
+            gestorCliente.save();}
+            catch(Exception ex){
             Context context = getApplicationContext();
-            CharSequence text = "creo base de datos";
+            CharSequence text =ex.toString();
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+                System.err.println(ex.toString());
+            }
         }
 
 
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent perfil = new Intent(context, Perfil.class);
-                perfil.putExtra("id_usuario",loginUsuario.getText().toString());
-                startActivity(perfil);
-                /*
+
                 Boolean rpta = verificarUsuario();
                 if (rpta){
                     Intent perfil = new Intent(context, Perfil.class);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-                */
+
             }
         });
     }
