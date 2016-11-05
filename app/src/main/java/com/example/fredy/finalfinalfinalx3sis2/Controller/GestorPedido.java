@@ -2,6 +2,7 @@ package com.example.fredy.finalfinalfinalx3sis2.Controller;
 
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Pedido;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,7 +11,7 @@ import java.util.Comparator;
  * Created by fredy on 11/3/16.
  */
 
-public class GestorPedido {
+public class GestorPedido implements Serializable{
     private ArrayList<Pedido> pedidos;
 
     public GestorPedido(){

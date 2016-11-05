@@ -1,12 +1,13 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Pedido {
+public class Pedido implements Serializable{
     private String Identificador;
     private Double Monto;
     private String Estado;

@@ -13,11 +13,11 @@ import com.example.fredy.finalfinalfinalx3sis2.R;
  * Created by fredy on 11/4/16.
  */
 
-public class HistorialPedido extends AppCompatActivity {
+public class ConfirmarPedido extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.historial_pedido);
+        setContentView(R.layout.confirmar_pedido);
         Context context = this;
         this.Inicializar_menu(context);
     }

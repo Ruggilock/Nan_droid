@@ -1,10 +1,12 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Boleta extends Comprobante {
+public class Boleta extends Comprobante implements Serializable {
     private String NumeroBoleta;
 
     public Boleta(String numeroBoleta, String fechaEmision, Double total, Integer numCuotas) {

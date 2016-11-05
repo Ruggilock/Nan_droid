@@ -16,10 +16,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Vistas.Perfil"/>
-        <activity android:name=".Vistas.HistorialPedido"/>
+        <activity android:name=".Vistas.AdministrarPedido"/>
         <activity android:name=".Vistas.Catalogo"/>
-        <activity android:name=".Vistas.AdministrarPedido"></activity>
         <activity android:name=".Vistas.HacerPedido"/>
+        <activity android:name=".Vistas.Cuotas"/>
+        <activity android:name=".Vistas.ConfirmarPedido"/>
+        <activity android:name=".Vistas.HacerPedidoCatalogo"/>
+        <activity android:name=".Vistas.HistorialPedido"/>
 
     </application>
 

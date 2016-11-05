@@ -1,10 +1,12 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class DatosDeContacto {
+public class DatosDeContacto implements Serializable {
     private String Email;
     private String Numero;
 

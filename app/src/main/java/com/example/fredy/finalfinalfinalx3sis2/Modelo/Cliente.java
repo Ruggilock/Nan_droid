@@ -2,29 +2,32 @@ package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorPedido;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Cliente {
+public class Cliente implements Serializable{
     private String Nombre_de_usuario;
     private String Contraseña;
     private Boolean Estado_deuda;
     private Double Linea_credito;
     private String Razon_social;
+    private String Ruc;
     ArrayList<DatosDeContacto> ListaDatosDeContacto;
 
     /*Pedidos */
     public GestorPedido gPedidos;
 
-    public Cliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social){
+    public Cliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social, String ruc){
         this.Nombre_de_usuario=nombre_de_usuario;
         this.Contraseña=contraseña;
         this.Estado_deuda=estado_deuda;
         this.Linea_credito=linea_credito;
         this.Razon_social=razon_social;
+        this.Ruc= ruc;
         ListaDatosDeContacto=new ArrayList<DatosDeContacto>();
         this.gPedidos = new GestorPedido();
     }
@@ -77,5 +80,13 @@ public class Cliente {
 
     public void setRazon_social(String razon_social) {
         Razon_social = razon_social;
+    }
+
+    public String getRuc() {
+        return Ruc;
+    }
+
+    public void setRuc(String ruc) {
+        Ruc = ruc;
     }
 }

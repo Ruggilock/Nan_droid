@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_weight="1"
-                        android:text="godievski" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -55,7 +55,7 @@
                         android:text="Razon Social" />
 
                     <TextView
-                        android:id="@+id/razon_Social"
+                        android:id="@+id/perfil_razon_Social"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_weight="1"
@@ -75,7 +75,7 @@
                         android:text="Numero ruc" />
 
                     <TextView
-                        android:id="@+id/numero_ruc"
+                        android:id="@+id/perfil_numero_ruc"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_weight="1"
@@ -94,7 +94,7 @@
                         android:text="Linea de credito" />
 
                     <TextView
-                        android:id="@+id/Linea_de_credito"
+                        android:id="@+id/perfil_Linea_de_credito"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_weight="1"
@@ -112,7 +112,7 @@
                         android:text="Estado de deuda" />
 
                     <TextView
-                        android:id="@+id/Estado_de_deuda"
+                        android:id="@+id/perfil_Estado_de_deuda"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_weight="1"

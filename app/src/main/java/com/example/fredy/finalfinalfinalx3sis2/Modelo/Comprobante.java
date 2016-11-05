@@ -1,12 +1,13 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Comprobante {
+public class Comprobante implements Serializable{
     private String FechaEmision;
     private Double Total;
     ArrayList<Cuota> Cuotas;

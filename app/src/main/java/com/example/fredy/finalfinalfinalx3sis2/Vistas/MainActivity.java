@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
 import com.example.fredy.finalfinalfinalx3sis2.R;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private GestorCliente GestorCliente;
@@ -20,17 +24,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
+       // this.Inicializar_menu();
         Button but1 = (Button) findViewById(R.id.buttonIngresar);
         loginUsuario = (EditText) findViewById(R.id.loginUsuario);
         loginContrasenia = (EditText) findViewById(R.id.loginContrasenia);
         GestorCliente = new GestorCliente();
+
+
+
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (verificarUsuario()){
+                Boolean rpta = verificarUsuario();
+                if (rpta){
                     Intent perfil = new Intent(context, Perfil.class);
+                    Cliente cl = GestorCliente.obtenerClientePorID(loginUsuario.getText().toString());
+                    perfil.putExtra("var_usuario", cl);
+                    
                     startActivity(perfil);
                 }else{
                     Context context = getApplicationContext();
@@ -46,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean verificarUsuario() {
-        Boolean resultado = this.GestorCliente.comprobarLogin(loginUsuario.getText().toString(),loginContrasenia.getText().toString());
-        return resultado;
+        return this.GestorCliente.comprobarLogin(loginUsuario.getText().toString(),loginContrasenia.getText().toString());
     }
+
+
+
 }

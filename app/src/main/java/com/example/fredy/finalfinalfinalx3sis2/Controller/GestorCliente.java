@@ -15,7 +15,8 @@ public class GestorCliente {
         this.Clientes = new ArrayList<Cliente>();
 
         /*DiegoG*/
-        this.nuevoCliente("godievski","asd",false,99999999.0,"Ka-Tet Corp.");
+        this.nuevoCliente("godievski","asd",false,99999999.0,"Ka-Tet Corp.","123456789");
+        this.nuevoCliente("a","a",true,00000.0,"a","1234567");
 
     }
 
@@ -38,7 +39,7 @@ public class GestorCliente {
         } else
             return false;
     }
-    public void nuevoCliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social){
-        this.Clientes.add(new Cliente(nombre_de_usuario,contraseña,estado_deuda,linea_credito,razon_social));
+    public void nuevoCliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social,String ruc){
+        this.Clientes.add(new Cliente(nombre_de_usuario,contraseña,estado_deuda,linea_credito,razon_social,ruc));
     }
 }

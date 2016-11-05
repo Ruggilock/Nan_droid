@@ -1,10 +1,12 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Factura extends Comprobante{
+public class Factura extends Comprobante implements Serializable{
     public static final Double IGV_const = 0.18;
 
     private String NumeroFactura;
