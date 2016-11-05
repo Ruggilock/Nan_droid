@@ -25,8 +25,8 @@ public class GestorProducto   implements Serializable{
     public GestorProducto (){
         this.productos = new ArrayList<Producto>();
         /*String identificador,String nombre,Double precio,String tipo,String unidad,String imagen,String categoria*/
-        this.productos.add(new Producto("1","Producto 1",10.0,"Tipo 1","Docena","@drawable/prod1","Categoria 1"));
-        this.productos.add(new Producto("2","Producto 2",10.0,"Tipo 2","Docena","@drawable/prod1","Categoria 1"));
+        this.productos.add(new Producto("1","Producto 1",10.0,"Tipo 1","Docena","@drawable/prod","Categoria 1"));
+        this.productos.add(new Producto("2","Producto 2",10.0,"Tipo 2","Docena","@drawable/prod","Categoria 1"));
         this.productos.add(new Producto("3","Producto 3",10.0,"Tipo 1","Docena","@drawable/prod","Categoria 1"));
         this.productos.add(new Producto("4","Producto 4",10.0,"Tipo 2","Docena","@drawable/prod","Categoria 1"));
         this.productos.add(new Producto("5","Producto 5",10.0,"Tipo 1","Docena","@drawable/prod","Categoria 1"));

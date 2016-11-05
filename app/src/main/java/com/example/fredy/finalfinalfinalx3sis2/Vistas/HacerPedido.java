@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -12,6 +13,8 @@ import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorProducto;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
 import com.example.fredy.finalfinalfinalx3sis2.R;
+
+import static com.example.fredy.finalfinalfinalx3sis2.R.id.loginUsuario;
 
 /**
  * Created by fredy on 11/4/16.
@@ -31,6 +34,29 @@ public class HacerPedido extends AppCompatActivity {
         context = this;
         this.InicializarAtributos();
         this.Inicializar_menu(context);
+
+        Button hacer_pedido_personalizar = (Button) findViewById(R.id.hacer_pedido_personalizar);
+        Button hacer_pedido_lista_de_pedido = (Button) findViewById(R.id.hacer_pedido_lista_de_pedido);
+
+        hacer_pedido_personalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent perfil = new Intent(context, HacerPedidoCatalogo.class);
+                    perfil.putExtra("id_usuario",id);
+                    startActivity(perfil);
+
+            }
+        });
+
+        hacer_pedido_lista_de_pedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(context, HacerPedidoCatalogo.class);
+                perfil.putExtra("id_usuario",id);
+                startActivity(perfil);
+
+            }
+        });
     }
     private void InicializarAtributos(){
         try{

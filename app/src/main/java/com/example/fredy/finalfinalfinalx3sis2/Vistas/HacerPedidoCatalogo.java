@@ -4,13 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorProducto;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Pedido;
 import com.example.fredy.finalfinalfinalx3sis2.R;
 
 /**
@@ -23,6 +30,8 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
     private Cliente cl;
     private String id;
     private Context context;
+    private Pedido ped ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +40,21 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
         context = this;
         this.InicializarAtributos();
         this.Inicializar_menu(context);
+
+        Button siguiente = (Button) findViewById(R.id.hacer_pedido_catalogo_siguiente);
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: SACAR VALRES DE CANTIDAD DE CADA PRODUCTO
+                Intent perfil = new Intent(context, HacerPedidoCatalogo.class);
+                perfil.putExtra("id_usuario",id);
+                startActivity(perfil);
+
+            }
+        });
     }
+
+
     private void InicializarAtributos(){
         try{
             Bundle datos = this.getIntent().getExtras();
@@ -42,6 +65,8 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+
+        this.gestorProducto=new GestorProducto();
         this.gestorCliente = new GestorCliente();
         gestorCliente.deserializar(context);
         this.cl = gestorCliente.obtenerClientePorID(id);
@@ -51,6 +76,20 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+        Integer numPedido = this.cl.gPedidos.size();
+        /*String identificador, Double monto, String estado, Integer numCuotas, String tracking,String fecha*/
+        ped= new Pedido(String.valueOf(numPedido + 1),0.0,"Por Cancelar",0,"Procesando","Today");
+
+        //CARGAR PANTALLA CON PRODUCTOS SEGUN CATALOGO
+        ScrollView main = (ScrollView) findViewById(R.id.hacer_pedido_catalogo_sw);
+        LinearLayout linearItem = new LinearLayout(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        
+        linearItem.setLayoutParams(params);
+
+
+
+
     }
 
     private void Inicializar_menu(final Context context) {

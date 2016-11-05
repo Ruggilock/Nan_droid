@@ -21,6 +21,7 @@ public class GestorPedido   implements Serializable{
     public void AgregarPedido(Pedido ped){
         this.pedidos.add(ped);
     }
+
     public int CancelarPorId(String identificador){
         for(int i = 0; i < this.pedidos.size(); i++){
             Pedido ped = this.pedidos.get(i);
@@ -55,6 +56,9 @@ public class GestorPedido   implements Serializable{
             }
         }
         return null;
+    }
+    public Integer size(){
+        return this.pedidos.size();
     }
     public Pedido ObtenerPedidoPorOrden(int index){
         return this.pedidos.get(index);
