@@ -36,8 +36,8 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.perfil);
 
         context = this;
-        this.InicializarAtributos();
         this.Inicializar_menu(context);
+        this.InicializarAtributos();
 
         Button boton_pass = (Button) findViewById(R.id.perfil_button_cambiar_pass);
         boton_pass.setOnClickListener(new View.OnClickListener() {
@@ -59,30 +59,18 @@ public class Perfil extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-        try{
-            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
-        } catch(Exception ex){
-            CharSequence text = ex.toString();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
+        this.gestorCliente = new GestorCliente();
+        gestorCliente.deserializar(context);
 
-        if (gestorCliente != null) {
-            this.cl = gestorCliente.obtenerClientePorID(id);
-            if (cl == null) {
-                CharSequence text = "Cliente error Perfil";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }else
-                this.SetDatos();
-        }else{
-            CharSequence text = "Gestor Nulll";
+        this.cl = gestorCliente.obtenerClientePorID(id);
+        if (cl == null) {
+            CharSequence text = "Cliente error Perfil";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-        }
+        }else
+            this.SetDatos();
+
     }
 
     private void SetDatos(){
@@ -112,7 +100,7 @@ public class Perfil extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-            this.gestorCliente.save();
+            this.gestorCliente.serializar(context);
         }else {
             Context context = getApplicationContext();
             CharSequence text = "contraseña incorrecta";
@@ -134,6 +122,7 @@ public class Perfil extends AppCompatActivity {
                 Intent perfil = new Intent(context, Perfil.class);
                 perfil.putExtra("id_usuario",id);
                 startActivity(perfil);
+
             }
         });
 

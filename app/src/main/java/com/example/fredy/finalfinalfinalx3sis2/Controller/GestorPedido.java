@@ -12,7 +12,7 @@ import java.util.Comparator;
  * Created by fredy on 11/3/16.
  */
 
-public class GestorPedido  extends SugarRecord implements Serializable{
+public class GestorPedido   implements Serializable{
     private ArrayList<Pedido> pedidos;
 
     public GestorPedido(){

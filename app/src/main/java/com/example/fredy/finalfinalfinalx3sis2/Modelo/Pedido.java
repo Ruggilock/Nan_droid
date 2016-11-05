@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Pedido  extends SugarRecord implements Serializable{
+public class Pedido   implements Serializable{
     private String Identificador;
     private Double Monto;
     private String Estado;

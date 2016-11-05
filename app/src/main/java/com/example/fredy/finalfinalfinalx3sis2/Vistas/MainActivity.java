@@ -32,32 +32,13 @@ public class MainActivity extends AppCompatActivity {
         loginUsuario = (EditText) findViewById(R.id.loginUsuario);
         loginContrasenia = (EditText) findViewById(R.id.loginContrasenia);
 
-        gestorCliente = null;
-        try {
-            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
-        } catch(Exception ex){
-            System.err.println(ex.toString());
-        }
-        if (gestorCliente != null){
-            System.err.println("Encontro base de datos");
-        } else {
-            try{
-            gestorCliente = new GestorCliente();
-            gestorCliente.save();}
-            catch(Exception ex){
-            Context context = getApplicationContext();
-            CharSequence text =ex.toString();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-                System.err.println(ex.toString());
-            }
-        }
-
+        gestorCliente = new GestorCliente();
+        gestorCliente.deserializar(context);
 
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 Boolean rpta = verificarUsuario();
                 if (rpta){

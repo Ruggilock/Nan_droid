@@ -1,15 +1,24 @@
 package com.example.fredy.finalfinalfinalx3sis2.Controller;
 
+import android.content.Context;
+
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
 import com.orm.SugarRecord;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class GestorCliente  extends SugarRecord {
+public class GestorCliente {
     private ArrayList<Cliente> Clientes;
 
     public GestorCliente(){
@@ -42,5 +51,34 @@ public class GestorCliente  extends SugarRecord {
     }
     public void nuevoCliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social,String ruc){
         this.Clientes.add(new Cliente(nombre_de_usuario,contraseña,estado_deuda,linea_credito,razon_social,ruc));
+    }
+    public void serializar(final Context context){
+        try {
+            FileOutputStream fileOut= context.openFileOutput("clientes.bin",Context.MODE_PRIVATE);
+            ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+            salida.writeObject(this.Clientes);
+            salida.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deserializar(final Context context){
+        try {
+            FileInputStream fis = context.openFileInput("clientes.bin");
+            ObjectInputStream entrada = new ObjectInputStream(fis);
+            this.Clientes = (ArrayList<Cliente>) entrada.readObject();
+            entrada.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            this.serializar(context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

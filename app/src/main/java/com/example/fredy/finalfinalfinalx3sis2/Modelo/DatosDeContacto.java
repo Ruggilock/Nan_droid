@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by fredy on 11/3/16.
  */
 
-public class DatosDeContacto  extends SugarRecord implements Serializable {
+public class DatosDeContacto   implements Serializable {
     private String Email;
     private String Numero;
 

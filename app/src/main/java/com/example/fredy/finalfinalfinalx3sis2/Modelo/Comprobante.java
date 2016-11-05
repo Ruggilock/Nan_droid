@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Comprobante extends SugarRecord implements Serializable{
+public class Comprobante  implements Serializable{
     private String FechaEmision;
     private Double Total;
     ArrayList<Cuota> Cuotas;

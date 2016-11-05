@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Cliente extends SugarRecord implements Serializable{
+public class Cliente implements Serializable{
     private String Nombre_de_usuario;
     private String Contraseña;
     private Boolean Estado_deuda;

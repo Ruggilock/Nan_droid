@@ -9,7 +9,7 @@ import java.security.PublicKey;
  * Created by fredy on 11/3/16.
  */
 
-public class Producto extends SugarRecord implements Serializable{
+public class Producto implements Serializable{
     private String Identificador;
     private String Nombre;
     private Double Precio;

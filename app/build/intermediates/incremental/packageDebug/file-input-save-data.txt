@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Nov 05 00:27:43 COT 2016
+#Sat Nov 05 01:32:24 COT 2016
 14.set=ANDROID_RESOURCE
 180.file=C\:\\Users\\PC\\Desktop\\sis2\\Nan_droid\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_screen_toolbar.xml
 118.set=ANDROID_RESOURCE

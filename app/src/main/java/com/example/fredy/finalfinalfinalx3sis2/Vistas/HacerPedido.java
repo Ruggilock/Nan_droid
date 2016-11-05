@@ -43,26 +43,13 @@ public class HacerPedido extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-        try{
-            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
-        } catch(Exception ex){
-            CharSequence text = ex.toString();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
 
-        if (gestorCliente != null) {
-            this.cl = gestorCliente.obtenerClientePorID(id);
-            if (cl == null) {
-                CharSequence text = "Cliente error Perfil";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }else{}
+        this.gestorCliente = new GestorCliente();
+        gestorCliente.deserializar(context);
 
-        }else{
-            CharSequence text = "Gestor Nulll";
+        this.cl = gestorCliente.obtenerClientePorID(id);
+        if (cl == null) {
+            CharSequence text = "Cliente error Perfil";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

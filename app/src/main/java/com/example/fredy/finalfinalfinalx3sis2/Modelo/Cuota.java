@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by fredy on 11/3/16.
  */
 
-public class Cuota extends SugarRecord implements Serializable {
+public class Cuota  implements Serializable {
     private Double Monto;
     private String Fecha;
     private String Estado;

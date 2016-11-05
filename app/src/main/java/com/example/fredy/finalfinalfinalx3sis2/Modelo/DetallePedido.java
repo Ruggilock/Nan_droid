@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by fredy on 11/3/16.
  */
 
-public class DetallePedido extends SugarRecord implements Serializable {
+public class DetallePedido implements Serializable {
     private String Identificador;
     private Integer Cantidad;
     private Double SubTotal;
