@@ -27,13 +27,12 @@ import java.security.spec.ECField;
 
 public class Perfil extends AppCompatActivity {
     private GestorCliente gestorCliente;
-    private String id;
+    private static String id;
     Cliente cl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil);
-        id = " ";
 
         Context context = this;
         this.Inicializar_menu(context);

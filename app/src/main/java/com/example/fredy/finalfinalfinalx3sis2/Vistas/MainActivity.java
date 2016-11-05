@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         } catch(Exception ex){
             gestorCliente = new GestorCliente();
-            gestorCliente.save();
+            gestorCliente.save();r
             Context context = getApplicationContext();
             CharSequence text = "creo base de datos";
             int duration = Toast.LENGTH_SHORT;
