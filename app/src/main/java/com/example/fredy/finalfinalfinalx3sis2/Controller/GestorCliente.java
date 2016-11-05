@@ -1,6 +1,7 @@
 package com.example.fredy.finalfinalfinalx3sis2.Controller;
 
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class GestorCliente {
+public class GestorCliente  extends SugarRecord {
     private ArrayList<Cliente> Clientes;
 
     public GestorCliente(){

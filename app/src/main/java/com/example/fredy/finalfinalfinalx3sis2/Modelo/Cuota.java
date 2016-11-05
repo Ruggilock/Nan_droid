@@ -1,16 +1,21 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Cuota implements Serializable {
+public class Cuota extends SugarRecord implements Serializable {
     private Double Monto;
     private String Fecha;
     private String Estado;
 
+    public Cuota(){
+
+    }
     public Cuota(Double monto,String fecha,String estado){
         this.Monto=monto;
         this.Fecha=fecha;

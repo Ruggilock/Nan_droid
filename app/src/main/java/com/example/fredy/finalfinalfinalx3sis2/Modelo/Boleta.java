@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class Boleta extends Comprobante implements Serializable {
     private String NumeroBoleta;
 
+    public Boleta(){
+        super();
+    }
+
     public Boleta(String numeroBoleta, String fechaEmision, Double total, Integer numCuotas) {
         super(fechaEmision, total,numCuotas);
         this.NumeroBoleta = numeroBoleta;

@@ -1,17 +1,22 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class DetallePedido implements Serializable {
+public class DetallePedido extends SugarRecord implements Serializable {
     private String Identificador;
     private Integer Cantidad;
     private Double SubTotal;
     private Producto Producto;
 
+    public DetallePedido(){
+
+    }
     public DetallePedido(String  identificador, Integer cantidad,Double subTotal,Producto producto){
         this.Identificador=identificador;
         this.Cantidad=cantidad;

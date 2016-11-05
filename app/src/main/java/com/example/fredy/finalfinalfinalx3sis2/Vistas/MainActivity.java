@@ -12,12 +12,14 @@ import android.widget.Toast;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Producto;
 import com.example.fredy.finalfinalfinalx3sis2.R;
+import com.orm.SugarRecord;
 
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    private GestorCliente GestorCliente;
+    private GestorCliente gestorCliente;
     private EditText loginUsuario;
     private EditText loginContrasenia;
     final Context context = this;
@@ -26,23 +28,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-       // this.Inicializar_menu();
         Button but1 = (Button) findViewById(R.id.buttonIngresar);
         loginUsuario = (EditText) findViewById(R.id.loginUsuario);
         loginContrasenia = (EditText) findViewById(R.id.loginContrasenia);
-        GestorCliente = new GestorCliente();
 
+
+        GestorCliente.deleteAll(GestorCliente.class);
+        try{
+            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
+            Context context = getApplicationContext();
+            CharSequence text = "encontro base de dato";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } catch(Exception ex){
+            gestorCliente = new GestorCliente();
+            gestorCliente.save();
+            Context context = getApplicationContext();
+            CharSequence text = "creo base de datos";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
 
 
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent perfil = new Intent(context, Perfil.class);
+                perfil.putExtra("id_usuario",loginUsuario.getText().toString());
+                startActivity(perfil);
+                /*
                 Boolean rpta = verificarUsuario();
                 if (rpta){
                     Intent perfil = new Intent(context, Perfil.class);
-                    Cliente cl = GestorCliente.obtenerClientePorID(loginUsuario.getText().toString());
-                    perfil.putExtra("var_usuario", cl);
-                    
+                    perfil.putExtra("id_usuario",loginUsuario.getText().toString());
                     startActivity(perfil);
                 }else{
                     Context context = getApplicationContext();
@@ -50,15 +70,14 @@ public class MainActivity extends AppCompatActivity {
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-
-
                 }
+                */
             }
         });
     }
 
     private Boolean verificarUsuario() {
-        return this.GestorCliente.comprobarLogin(loginUsuario.getText().toString(),loginContrasenia.getText().toString());
+        return gestorCliente.comprobarLogin(loginUsuario.getText().toString(),loginContrasenia.getText().toString());
     }
 
 

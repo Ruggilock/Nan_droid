@@ -1,5 +1,7 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,11 +9,14 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Comprobante implements Serializable{
+public class Comprobante extends SugarRecord implements Serializable{
     private String FechaEmision;
     private Double Total;
     ArrayList<Cuota> Cuotas;
 
+    public Comprobante(){
+
+    }
     /*constructor*/
     public Comprobante(String fechaEmision, Double total, Integer numCuotas) {
         this.FechaEmision=fechaEmision;

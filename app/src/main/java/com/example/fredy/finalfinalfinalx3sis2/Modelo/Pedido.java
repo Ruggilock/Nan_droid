@@ -1,5 +1,7 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,7 +9,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Pedido implements Serializable{
+public class Pedido  extends SugarRecord implements Serializable{
     private String Identificador;
     private Double Monto;
     private String Estado;
@@ -17,6 +19,9 @@ public class Pedido implements Serializable{
     ArrayList<DetallePedido> ListDetallePedido;
     private Comprobante Comprobante;
 
+    public Pedido(){
+
+    }
     public Pedido(String identificador, Double monto, String estado, Integer numCuotas, String tracking,String fecha) {
         this.Identificador = identificador;
         this.Monto = monto;

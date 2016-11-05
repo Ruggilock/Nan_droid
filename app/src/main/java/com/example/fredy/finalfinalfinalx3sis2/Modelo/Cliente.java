@@ -1,6 +1,7 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorPedido;
+import com.orm.SugarRecord;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * Created by fredy on 11/3/16.
  */
 
-public class Cliente implements Serializable{
+public class Cliente extends SugarRecord implements Serializable{
     private String Nombre_de_usuario;
     private String Contraseña;
     private Boolean Estado_deuda;
@@ -21,6 +22,9 @@ public class Cliente implements Serializable{
     /*Pedidos */
     public GestorPedido gPedidos;
 
+    public Cliente(){
+
+    }
     public Cliente(String nombre_de_usuario, String contraseña, Boolean estado_deuda, Double linea_credito, String razon_social, String ruc){
         this.Nombre_de_usuario=nombre_de_usuario;
         this.Contraseña=contraseña;

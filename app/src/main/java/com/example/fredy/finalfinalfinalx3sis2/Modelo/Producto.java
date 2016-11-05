@@ -1,12 +1,15 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
+import java.io.Serializable;
 import java.security.PublicKey;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class Producto {
+public class Producto extends SugarRecord implements Serializable{
     private String Identificador;
     private String Nombre;
     private Double Precio;
@@ -15,6 +18,10 @@ public class Producto {
     private String Imagen;
     private String Categoria;
 
+
+    public Producto(){
+
+    }
     public Producto(String identificador,String nombre,Double precio,String tipo,String unidad,String imagen,String categoria){
         this.Identificador=identificador;
         this.Nombre=nombre;

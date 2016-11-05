@@ -12,10 +12,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
 import com.example.fredy.finalfinalfinalx3sis2.R;
 
 import org.w3c.dom.Text;
+
+import java.security.spec.ECField;
 
 
 /**
@@ -23,17 +26,54 @@ import org.w3c.dom.Text;
  */
 
 public class Perfil extends AppCompatActivity {
+    private GestorCliente gestorCliente;
+    private String id;
     Cliente cl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil);
-        Bundle datos = this.getIntent().getExtras();
-        this.cl = null;
-        this.cl = (Cliente) datos.getSerializable("var_usuario");
+        id = " ";
+
         Context context = this;
         this.Inicializar_menu(context);
-        this.SetDatos();
+
+        try{
+            Bundle datos = this.getIntent().getExtras();
+            id = datos.getString("id_usuario");
+        } catch(Exception ex){
+            CharSequence text = "No se paso el id por Intent";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        try{
+            gestorCliente = GestorCliente.findById(GestorCliente.class, 1);
+        } catch(Exception ex){
+            CharSequence text = ex.toString();
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        /*
+        if (gestorCliente != null) {
+            this.cl = gestorCliente.obtenerClientePorID(id);
+            if (cl == null) {
+                CharSequence text = "Cliente error Perfil";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+
+            this.SetDatos();
+        }else{
+            CharSequence text = "Gestor Nulll";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        */
+
         Button boton_pass = (Button) findViewById(R.id.perfil_button_cambiar_pass);
 
         boton_pass.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +82,8 @@ public class Perfil extends AppCompatActivity {
                 Cambiar_contraseña();
             }
         });
+
+
 
     }
 
@@ -84,7 +126,7 @@ public class Perfil extends AppCompatActivity {
         }
         actual_contraseña.setText("");
         nueva_contraseña.setText("");
-
+        this.gestorCliente.save();
 
     }
     private void Inicializar_menu(final Context context) {

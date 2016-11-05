@@ -1,15 +1,20 @@
 package com.example.fredy.finalfinalfinalx3sis2.Modelo;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 
 /**
  * Created by fredy on 11/3/16.
  */
 
-public class DatosDeContacto implements Serializable {
+public class DatosDeContacto  extends SugarRecord implements Serializable {
     private String Email;
     private String Numero;
 
+    public DatosDeContacto(){
+
+    }
     public DatosDeContacto(String email,String numero){
         this.Email=email;
         this.Numero=numero;

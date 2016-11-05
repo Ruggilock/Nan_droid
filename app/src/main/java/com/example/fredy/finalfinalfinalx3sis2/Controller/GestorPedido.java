@@ -1,6 +1,7 @@
 package com.example.fredy.finalfinalfinalx3sis2.Controller;
 
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Pedido;
+import com.orm.SugarRecord;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Comparator;
  * Created by fredy on 11/3/16.
  */
 
-public class GestorPedido implements Serializable{
+public class GestorPedido  extends SugarRecord implements Serializable{
     private ArrayList<Pedido> pedidos;
 
     public GestorPedido(){

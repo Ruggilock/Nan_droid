@@ -15,6 +15,9 @@ public class Factura extends Comprobante implements Serializable{
     private Double Igv;
 /*Constructor*/
 
+    public Factura(){
+        super();
+    }
     public Factura(String numeroFactura, String fechaCancelacion, Double subTotal, Double igv, String fechaEmision, Double total,
                    Integer numCuotas)
     {
