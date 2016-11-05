@@ -18,28 +18,78 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
-                <Button
+                android:id="@+id/hacer_pedido_catalogo_content"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="anterior"
-                    android:id="@+id/hacer_pedido_catalogo_anterior"
-                    android:layout_weight="1"
-                    android:layout_margin="40dp"
-                    />
-
-                <Button
+                    android:weightSum="2"
+                    android:id="@+id/hpcat_template">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:src="@drawable/grocery"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="NOMBRE"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TIPO"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="UNIDAD"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="52dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="CANTIDAD"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="siguiente"
-                    android:id="@+id/hacer_pedido_catalogo_siguiente"
-                    android:layout_weight="1"
-                    android:layout_margin="40dp"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    >
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="anterior"
+                        android:id="@+id/hacer_pedido_catalogo_anterior"
+                        android:layout_weight="1"
+                        android:layout_margin="40dp"
+                        />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="siguiente"
+                        android:id="@+id/hacer_pedido_catalogo_siguiente"
+                        android:layout_weight="1"
+                        android:layout_margin="40dp"
+                        />
 
 
+                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>

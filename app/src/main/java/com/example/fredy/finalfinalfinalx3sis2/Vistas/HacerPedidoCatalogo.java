@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.util.LayoutDirection;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -17,8 +20,14 @@ import android.widget.Toast;
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorProducto;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.DetallePedido;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Pedido;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Producto;
 import com.example.fredy.finalfinalfinalx3sis2.R;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 /**
  * Created by fredy on 11/4/16.
@@ -46,14 +55,47 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: SACAR VALRES DE CANTIDAD DE CADA PRODUCTO
-                Intent perfil = new Intent(context, HacerPedidoCatalogo.class);
+                actualizarPedido();
+                Intent perfil = new Intent(context, ConfirmarPedido.class);
+                perfil.putExtra("id_usuario",id);
+                perfil.putExtra("pedido",ped);
+                startActivity(perfil);
+            }
+        });
+        Button anterior = (Button) findViewById(R.id.hacer_pedido_catalogo_anterior);
+        anterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(context, HacerPedido.class);
                 perfil.putExtra("id_usuario",id);
                 startActivity(perfil);
-
             }
         });
     }
 
+    private void actualizarPedido(){
+        LinearLayout padre = (LinearLayout) findViewById(R.id.hacer_pedido_catalogo_content);
+        int id = 1;
+        Double monto = 0.0;
+        for(int i = 0; i < this.gestorProducto.size(); i++){
+            LinearLayout child = (LinearLayout) padre.getChildAt(i);
+            child = (LinearLayout) child.getChildAt(0);
+            LinearLayout right = (LinearLayout) child.getChildAt(1);
+            EditText cajitaNum = (EditText) right.getChildAt(0);
+            Integer num = Integer.parseInt(cajitaNum.getText().toString());
+
+            if (num > 0){
+                /*CREO DETALLE PEDIDO*/
+                Producto p = this.gestorProducto.getProd(i);
+                /*String  identificador, Integer cantidad,Double subTotal,Producto producto*/
+                DetallePedido dp = new DetallePedido(id+"",num,num*p.getPrecio(),p);
+                this.ped.AgregarDetallePedido(dp);
+                monto += num*p.getPrecio();
+                id += 1;
+            }
+        }
+        this.ped.setMonto(monto);
+    }
 
     private void InicializarAtributos(){
         try{
@@ -82,13 +124,23 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
 
         //CARGAR PANTALLA CON PRODUCTOS SEGUN CATALOGO
         ScrollView main = (ScrollView) findViewById(R.id.hacer_pedido_catalogo_sw);
-        LinearLayout linearItem = new LinearLayout(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        
-        linearItem.setLayoutParams(params);
+        LinearLayout padre = (LinearLayout) findViewById(R.id.hacer_pedido_catalogo_content);
+        LinearLayout botones = (LinearLayout) padre.getChildAt(1);
+        LinearLayout template = (LinearLayout) padre.getChildAt(0);
 
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-
+        padre.removeViewAt(0);
+        padre.removeViewAt(0);
+        /*hacer_pedido_catalogo_content*/
+        LinearLayout linearItem;
+        for(int i = 0; i < this.gestorProducto.size(); i++){
+            Producto p = gestorProducto.getProd(i);
+            LinearLayout child = (LinearLayout) inflater.inflate(R.layout.template,null);
+            modificarItem((LinearLayout) child.getChildAt(0),p);
+            padre.addView(child);
+        }
+        padre.addView(botones);
 
     }
 
@@ -155,4 +207,16 @@ public class HacerPedidoCatalogo extends AppCompatActivity {
 
     }
 
+    private void modificarItem(LinearLayout child, Producto p){
+        LinearLayout left = (LinearLayout) child.getChildAt(0);
+        LinearLayout right = (LinearLayout) child.getChildAt(1);
+        /*LEFT*/
+        ImageView imagen = (ImageView) left.getChildAt(0);
+        TextView nombre = (TextView) left.getChildAt(1);
+        nombre.setText(p.getNombre());
+        TextView precio = (TextView) left.getChildAt(2);
+        precio.setText(p.getPrecio().toString());
+        TextView unidad = (TextView) left.getChildAt(3);
+        unidad.setText(p.getUnidad());
+    }
 }

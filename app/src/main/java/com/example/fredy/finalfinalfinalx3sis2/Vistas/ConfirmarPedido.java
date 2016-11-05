@@ -3,14 +3,22 @@ package com.example.fredy.finalfinalfinalx3sis2.Vistas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorCliente;
 import com.example.fredy.finalfinalfinalx3sis2.Controller.GestorProducto;
 import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cliente;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Cuota;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.DetallePedido;
+import com.example.fredy.finalfinalfinalx3sis2.Modelo.Pedido;
 import com.example.fredy.finalfinalfinalx3sis2.R;
 
 /**
@@ -23,6 +31,7 @@ public class ConfirmarPedido extends AppCompatActivity {
     private Cliente cl;
     private String id;
     private Context context;
+    private Pedido ped;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +40,33 @@ public class ConfirmarPedido extends AppCompatActivity {
         context = this;
         this.InicializarAtributos();
         this.Inicializar_menu(context);
+
+        Button siguiente = (Button) findViewById(R.id.confirmar_pedido_siguiente);
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(context, Cuotas.class);
+                perfil.putExtra("id_usuario",id);
+                perfil.putExtra("pedido",ped);
+                startActivity(perfil);
+            }
+        });
+        Button anterior = (Button) findViewById(R.id.confirmar_pedido_anterior);
+        anterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(context, HacerPedidoCatalogo.class);
+                perfil.putExtra("id_usuario",id);
+                startActivity(perfil);
+            }
+        });
     }
 
     private void InicializarAtributos(){
         try{
             Bundle datos = this.getIntent().getExtras();
             id = datos.getString("id_usuario");
+            ped = (Pedido) datos.getSerializable("pedido");
         } catch(Exception ex){
             CharSequence text = "No se paso el id por Intent";
             int duration = Toast.LENGTH_SHORT;
@@ -52,6 +82,43 @@ public class ConfirmarPedido extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+        LinearLayout padre = (LinearLayout) findViewById(R.id.confirmar_pedido_content);
+        LinearLayout botones = (LinearLayout) padre.getChildAt(0);
+        padre.removeViewAt(0);
+
+        TextView numeroPedido = new TextView(this);
+        numeroPedido.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        numeroPedido.setText("Nro Pedido: " + ped.getIdentificador());
+        padre.addView(numeroPedido);
+        for(int i = 0; i < ped.cantidadPed(); i++){
+            DetallePedido dp = ped.getDetallePedido(i);
+            TextView nombreProd = new TextView(this);
+            nombreProd.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            nombreProd.setText("Nombre: " + dp.getProducto().getNombre());
+            TextView cantidad = new TextView(this);
+            cantidad.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            cantidad.setText("Cantidad: " + dp.getCantidad().toString());
+            TextView subtotal = new TextView(this);
+            subtotal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            subtotal.setText("Subtotal: " + dp.getSubTotal().toString());
+            TextView unidad = new TextView(this);
+            unidad.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            unidad.setText("Unidad: " + dp.getProducto().getUnidad());
+            TextView trash = new TextView(this);
+            trash.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            trash.setText("-----------------------------------------------------");
+            TextView trash2 = new TextView(this);
+            trash2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            trash2.setText("-----------------------------------------------------");
+            padre.addView(trash2);
+            padre.addView(nombreProd);
+            padre.addView(unidad);
+            padre.addView(cantidad);
+            padre.addView(subtotal);
+            padre.addView(trash);
+        }
+        padre.addView(botones);
+
     }
 
     private void Inicializar_menu(final Context context) {

@@ -51,6 +51,12 @@ public class GestorProducto   implements Serializable{
             e.printStackTrace();
         }
     }
+    public Producto getProd(int index){
+        return this.productos.get(index);
+    }
+    public Integer size(){
+        return this.productos.size();
+    }
     public void deserializar(final Context context){
         try {
             FileInputStream fis = context.openFileInput("productos.bin");

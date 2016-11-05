@@ -100,4 +100,10 @@ public class Pedido   implements Serializable{
             this.Comprobante = new Factura("00000", null, subTotal,  igv, fechaEmision, this.Monto,this.NumCuotas);
         }
     }
+    public int cantidadPed(){
+        return this.ListDetallePedido.size();
+    }
+    public DetallePedido getDetallePedido(int index){
+        return this.ListDetallePedido.get(index);
+    }
 }
